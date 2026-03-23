@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-turquoise: #75E9D2;
+  --color-orange: #FD512D;
+  --color-yellow: #FCD437;
+  --color-grey: #2F2E40;
+  --color-bg: #F5F8FA;
+
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+}

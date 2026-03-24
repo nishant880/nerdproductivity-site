@@ -39,22 +39,26 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    s3Storage({
-      collections: {
-        media: {
-          prefix: 'media',
-        },
-      },
-      bucket: process.env.S3_BUCKET || 'np-media',
-      config: {
-        credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY || '',
-          secretAccessKey: process.env.S3_SECRET_KEY || '',
-        },
-        region: 'auto',
-        endpoint: process.env.S3_ENDPOINT || '',
-        forcePathStyle: true,
-      },
-    }),
+    ...(process.env.S3_ACCESS_KEY
+      ? [
+          s3Storage({
+            collections: {
+              media: {
+                prefix: 'media',
+              },
+            },
+            bucket: process.env.S3_BUCKET || 'np-media',
+            config: {
+              credentials: {
+                accessKeyId: process.env.S3_ACCESS_KEY,
+                secretAccessKey: process.env.S3_SECRET_KEY || '',
+              },
+              region: 'auto',
+              endpoint: process.env.S3_ENDPOINT || '',
+              forcePathStyle: true,
+            },
+          }),
+        ]
+      : []),
   ],
 })

@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "next dev",
-    "build": "payload generate:importmap && payload migrate:create --name initial || true && payload migrate || true && next build",
+    "build": "payload generate:importmap && payload migrate && next build",
     "start": "next start",
     "generate:types": "payload generate:types"
   },

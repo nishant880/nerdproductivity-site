@@ -4,7 +4,6 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { s3Storage } from '@payloadcms/storage-s3'
 import sharp from 'sharp'
 import path from 'path'
-import { fileURLToPath } from 'url'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -14,9 +13,6 @@ import { Categories } from './collections/Categories'
 import { Testimonials } from './collections/Testimonials'
 import { SiteSettings } from './globals/SiteSettings'
 import { Navigation } from './globals/Navigation'
-
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
@@ -30,7 +26,7 @@ export default buildConfig({
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'CHANGE-ME-IN-PRODUCTION',
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
